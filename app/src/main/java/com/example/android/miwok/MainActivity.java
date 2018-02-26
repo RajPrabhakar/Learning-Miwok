@@ -18,6 +18,8 @@ package com.example.android.miwok;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -29,25 +31,12 @@ public class MainActivity extends AppCompatActivity {
 
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
-    }
 
-    public void openNumbersList(View view) {
-        Intent i = new Intent(this, NumbersActivity.class);
-        startActivity(i);
-    }
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        CategoryAdapter adapter = new CategoryAdapter(this, getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
 
-    public void openFamilyList(View view) {
-        Intent i = new Intent(this, FamilyActivity.class);
-        startActivity(i);
-    }
-
-    public void openColorsList(View view) {
-        Intent i = new Intent(this, ColorsActivity.class);
-        startActivity(i);
-    }
-
-    public void openPhrasesList(View view) {
-        Intent i = new Intent(this, PhrasesActivity.class);
-        startActivity(i);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
     }
 }
